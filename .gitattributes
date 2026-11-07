@@ -1,0 +1,8 @@
+# Keep text files LF on every checkout, whatever core.autocrlf says.
+* text=auto eol=lf
+
+# Windows batch files need CRLF to run reliably.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.png binary

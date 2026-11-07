@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>13. AVD環境と設定の持ち運び | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="13-avd環境と設定の持ち運び">13. AVD環境と設定の持ち運び</h1>
+<p>環境プロファイルを使うと、別のPCに同じAVDの基本設定を作れます。自分のAVDからも「その他」タブの「AVD環境の移行」でJSONを書き出せます。</p>
+<blockquote><p>🔑 <strong>ログイン情報や書籍は移りません</strong>: Google／リーダーアプリのログイン情報、リーダーアプリの書籍・ダウンロードデータ、AVDのユーザーデータ・キャッシュ・スナップショットは、環境プロファイルに含まれません。ログイン済みの状態そのものは移行しません。</p></blockquote>
+<h2 id="配布版に同梱の環境プロファイルで始める">配布版に同梱の環境プロファイルで始める</h2>
+<p>配布版には <code>ebook2xtc-S4Capture_API35_Play-environment.json</code> を <code>ebook2xtc.exe</code> と同じフォルダーに同梱します。初回起動時にアプリが自動検出し、「取得」タブ上部の「Android環境の準備」からAVDを作成します。Android Studioの入手・導入手順・準備の再確認・標準環境の設定を、この欄で順に操作できます。<a href="02-android-studio.html">2章</a>の「Google Play対応のAVDを作る」の手作業は不要です。AVDのハードウェア設定（キーボード入力の有効化を含む）と、ebook2xtcの出力対象・倍率・表示密度が、まとめて設定されます。</p>
+<p><strong>準備（初回だけ）</strong></p>
+<ol>
+<li><a href="02-android-studio.html">2章</a>の「Android StudioとSDKを入れる」の手順1〜5を行います（Android Emulator、Platform-Tools、Command-line Tools、System Imageの導入と、準備の再確認）。仮想化の警告とPC再起動の扱いは、2章で説明しています。</li>
+<li>ebook2xtcを起動し、「取得」タブ上部の初回セットアップ欄を確認します。同梱JSONとSDKを自動で調べ、必要なSystem Imageを画面に表示します。JSONを手で開く必要はありません。</li>
+<li>System Imageが未導入と表示された場合は、Android Studioの「SDK Manager」→「SDK Platformsタブ」で右下の「Show Package Details」をオンにし、表示されたAndroidの版・種類・CPUの種類に合うもの（同梱版はAndroid 15/API 35、Google Play、x86_64）を入れます。完了後にアプリの「準備を再確認」を押します。導入済みでも見つからなければ、同じ欄の「SDK保存先を指定（認識しない場合）」でAndroid StudioのAndroid SDK Locationを選びます。「導入手順を開く」から本章を開けます。</li>
+</ol>
+<p><strong>読み込む</strong></p>
+<ol start="4">
+<li>「標準環境をセットアップ」を押します。ファイル選択やAVD名の入力は不要です。作成中は進捗表示が出ます。</li>
+<li>完了すると、作成したAVDが「取得」タブの③に選ばれ、⓪出力対象・②キャプチャ解像度に同梱JSONの値が反映されます。</li>
+</ol>
+<p>同じ設定のAVDがすでにあれば作り直さずに再利用します。同名でも設定が異なる場合だけ、既存AVDを残して <code>（元の名前）_import2</code> などの別名で作成するかを確認します。AVDを自動起動したり、既存AVDを上書きしたりはしません。任意のJSONを手動で読み込む従来の機能は「その他」タブに残ります。</p>
+<p>起動時に準備済みのAVDを検出すると、「Android環境の準備」は「環境準備済み」と表示され、操作ボタンは折りたたまれます。「導入・再設定を開く」を押すと、Android Studioの入手先・導入手順・準備の再確認を再び使えます。導入中に「準備を再確認」を押した場合は、準備が整っていても操作欄を開いたまま結果を表示します。</p>
+<p>「準備を再確認」は、AVDと仮想化を確認する間「Android環境を確認しています…」と表示します。キャプチャまたは変換の実行中は、設定が変わらないよう再確認と標準環境のセットアップを開始できません。</p>
+<p><strong>起動して仕上げる</strong></p>
+<ol start="6">
+<li>仮想化の警告が出ているPCだけ、<a href="02-android-studio.html">2章の手順7</a>に従ってWindowsの機能を有効にし、<strong>Windows PC本体を一度再起動</strong>します。警告がなければ再起動は不要です。その後「取得」タブの③で「起動」を押します（<a href="05-launch-avd.html">5章</a>）。初回の起動はAndroidの初期設定を含むため、時間がかかります。</li>
+</ol>
+<p>仮想化診断が利用不可と表示しても、環境に合わない判定の可能性があるため、③の起動時に「このまま起動を試す」を選べます。起動できない場合は<a href="02-android-studio.html">2章</a>の設定を確認してください。</p>
+<ol start="7">
+<li>「その他」タブの「AVD環境の移行」にリーダーアプリの導入状態が表示されます。未導入ならPlayストアからリーダーアプリを入れ、「リーダーアプリ導入を確認」を押して再確認します。Androidとリーダーアプリの日本語化、Google／リーダーアプリのアカウントへのサインインを行います（<a href="03-japanese-and-reader.html">3章</a>）。</li>
+<li>Developer optionsの「Stay awake」など、画面スリープの設定を行います（<a href="04-keyboard-and-sleep.html">4章</a>）。キーボード入力は、同梱プロファイルで有効になっています。</li>
+</ol>
+<blockquote><p>🔑 同梱のJSONには、ログイン情報や書籍、リーダーアプリそのものは入っていません。アカウントは利用者自身のものでサインインしてください。</p></blockquote>
+<p>同梱JSONは特定のリーダーアプリを指定していません。リーダーアプリ本体も含みません。読み込み先ではPlayストアからお使いのリーダーアプリをインストールして「取得」タブの「リーダーアプリ」欄で選び（<a href="03-japanese-and-reader.html">3章</a>）、新しいAVDを起動後に「リーダーアプリ導入を確認」で実際の状態を確かめてください。</p>
+<table><thead><tr><th>読み込むときの表示</th><th>対処</th></tr></thead><tbody>
+<tr><td>「必要なSystem Imageが未導入です: …」</td><td>Android 15／Google Play／x86_64のイメージがInstalledか、SDK Managerの <strong>Android SDK Location</strong> を確認します。エラーに表示された「ebook2xtcが確認したSDK」と異なる場合は別のSDKへ導入した可能性があります。「SDK保存先を指定（認識しない場合）」からAndroid SDK Locationを選び、「準備を再確認」を押します</td></tr>
+<tr><td>「このPCではAVDの実行に使う仮想化を現在利用できません」</td><td>環境JSONの読み込みとAVD作成は続けられます。AVDを起動する前に「Windowsの機能を開く」で「Windows ハイパーバイザー プラットフォーム」を有効にし、<strong>Windows PC本体を一度再起動</strong>します（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>「Android SDKのCommand-line Tools（avdmanager）が見つかりません。」</td><td>SDK Managerの「SDK Tools」で「Android SDK Command-line Tools (latest)」を入れます</td></tr>
+<tr><td>「Android Emulatorが見つかりません。…」</td><td>SDK Managerで「Android Emulator」を入れ、ebook2xtcを起動し直します（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>「AVDを作成できません」「AVDの作成に失敗しました」（Javaに関する案内付き）</td><td>v0.2.3以降はAndroid Studio付属のJava 17以上を自動で探します。Android Studioのインストール先に <code>jbr\bin\java.exe</code> があるか確認してください。標準以外の場所に入れた場合は、その <code>jbr</code> フォルダーをユーザー環境変数 <code>JAVA_HOME</code> に設定し、ebook2xtcを再起動してから再試行します。<code>SKIP_JDK_VERSION_CHECK</code> で版の検査を回避しないでください。作りかけのAVDはアプリが片付けます</td></tr>
+<tr><td>「新しいAVD名は英数字、ドット、ハイフン、アンダースコアで指定してください。」</td><td>「その他」タブから任意JSONを手動で読み込む場合、AVD名に日本語や空白を使わないでください</td></tr>
+<tr><td>「環境プロファイルの読み込みは、キャプチャセッションと変換を終了してから行ってください。」</td><td>連続取得を停止して「キャプチャを終了」を押すか、変換が終わるのを待ってから読み込みます</td></tr>
+<tr><td>「Android環境の確認・AVDの作成が終わってから読み込んでください。」</td><td>起動直後の確認や、AVDの作成が終わるまで待ってから読み込みます</td></tr>
+</tbody></table>
+<h2 id="avd環境を書き出す">AVD環境を書き出す</h2>
+<ol>
+<li>「取得」タブの③で、書き出すAVDを選びます。⓪出力対象と②キャプチャ解像度も、使う値に合わせておきます。</li>
+<li>DPIを変えている場合は、そのAVDを起動したままにします。起動中のAVDの密度も記録されます。</li>
+<li>「その他」タブの「AVD環境を書き出す」を押します。</li>
+<li>保存先を選びます。既定のファイル名は <code>ebook2xtc-（AVD名）-environment.json</code> です。</li>
+<li>「環境を書き出しました」と表示されたら完了です。</li>
+</ol>
+<p>ファイルに記録する内容は次のとおりです。</p>
+<table><thead><tr><th>区分</th><th>内容</th></tr></thead><tbody>
+<tr><td>AVD</td><td>Android API、システムイメージの識別子、AVDのハードウェア設定</td></tr>
+<tr><td>ebook2xtc</td><td>出力対象、取得方式（常にADB直接取得）、キャプチャ倍率、（起動中なら）表示密度。旧版のJSONに「Windows画面取得」と書かれていても、ADB直接取得として読み込みます</td></tr>
+<tr><td>リーダーアプリ導入情報</td><td>書き出し時に選んでいたリーダーアプリのパッケージ名（未選択なら空）、Google Playから導入する指定、書き出し元の導入状態と参考バージョン。AVD停止中や確認できないときは「未確認」として記録</td></tr>
+</tbody></table>
+<p>リーダーアプリの本体・APKは書き出しません。アプリの版は参考情報で、移行先のPlayストアに同じ版がない場合もあります。Google／リーダーアプリのログイン情報、書籍、AVDのユーザーデータは含めません。</p>
+<h2 id="別のpcで読み込む">別のPCで読み込む</h2>
+<ol>
+<li>読み込むPCに、Android Studio、Android Emulator、Android SDK Command-line Toolsを入れます（<a href="02-android-studio.html">2章</a>）。AVDの作成に、Command-line Toolsの <code>avdmanager</code> を使います。</li>
+<li>JSONの <code>system_image</code> に書かれたものと同じSystem Imageを、SDK Managerでインストールします。読み込むときに「未導入」と表示された場合は、表示された識別子に対応するSystem Imageを追加してから、やり直します。</li>
+<li>キャプチャ中・変換中でないことを確かめます。作業フォルダーを作成・再開した後でも、「キャプチャを終了」していれば読み込めます。連続取得中は停止し、キャプチャを終了してから読み込んでください。起動直後のAndroid環境の確認中や、AVDの作成中も読み込めません。</li>
+<li>「その他」タブの「環境プロファイルを読み込む」を押し、JSONを選びます。</li>
+<li>新しいAVDの名前を入力します。同じ名前のAVDがある場合は、<code>（元の名前）_import2</code> のような重ならない名前が最初から入っています。</li>
+<li>「クリーンなAVDを作成しますか？」で内容を確かめ、「Yes」を押します。既存のAVDは上書きしません。作成には数十秒かかることがあり、その間はAndroid欄に「作成しています…」と表示され、AVDの操作は止まります。</li>
+<li>「環境を読み込みました」と表示されると、新しいAVDが③で選ばれ、出力対象・倍率・密度の値が反映されています。</li>
+<li>「取得」タブで「起動」を押します。起動完了後にリーダーアプリの導入状態を確認します。環境プロファイルから作ったAVDは、アプリを再起動した後も起動のたびに確認します。「その他」タブの「リーダーアプリ導入を確認」で、インストール後も再確認できます。古いJSONにはリーダーアプリ導入情報がなくても読み込めます。</li>
+</ol>
+<p>新しいAVDを起動した後、次のことは利用者自身で行います（<a href="03-japanese-and-reader.html">3章</a>、<a href="04-keyboard-and-sleep.html">4章</a>）。</p>
+<ul>
+<li>Androidとリーダーアプリの日本語化</li>
+<li>Playストア／リーダーアプリのインストール</li>
+<li>Google／リーダーアプリのアカウントへのサインイン</li>
+<li>キーボード入力と画面スリープの設定</li>
+</ul>
+<h2 id="アプリの設定を持ち運ぶ">アプリの設定を持ち運ぶ</h2>
+<p>アプリの取得・出力の設定（フォントテストのスナップ終了ページを含む）、密度の入力値、最後に選んだAVD、ウィンドウの配置、これまでに開いた作業フォルダーの一覧は、自動で <code>ebook2xtc.ini</code> に保存されます。「その他」タブの「アプリの配色」で選んだダークモード／通常モードも保存され、次回起動時に復元されます。切り替えはその場で画面全体に反映されます。 同じ「表示」欄の「アプリの文字サイズ」は小・中・大から選べます。小は従来のサイズで、初期値は中です。変更はすぐに反映され、次回起動時にも復元されます。AVD、リーダーアプリ、キャプチャ画像や出力の解像度には影響しません。文字を大きくして左ペインに収まらない場合は、左右のスクロールバーやペインの仕切りを使ってください。</p>
+<table><thead><tr><th>版</th><th>INIの場所</th></tr></thead><tbody>
+<tr><td>フォルダー版（PyInstaller版）</td><td><code>ebook2xtc.exe</code> と同じフォルダー。フォルダーごと移動すると、設定も引き継げます。フォルダーに書き込み権限が必要です</td></tr>
+<tr><td>Python開発版</td><td><code>%LOCALAPPDATA%\ebook2xtc\ebook2xtc.ini</code></td></tr>
+</tbody></table>
+<p>ログイン情報や書籍データ、RAW画像は、INIに入りません。作業フォルダーとAVD自体は、それぞれ別に移してください。</p>
+<nav class="pager"><a class="previous" href="12-resume.html">← 12. 中断と再開</a><a class="contents" href="index.html">目次</a><a class="next" href="14-faq.html">14. よくある質問・困ったとき →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

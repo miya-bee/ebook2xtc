@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4. キーボード入力と画面消灯の設定 | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="4-キーボード入力と画面消灯の設定">4. キーボード入力と画面消灯の設定</h1>
+<p>ログイン欄への入力と、長時間のキャプチャに備えて、AVDの2つの設定を確認します。</p>
+<h2 id="pcのキーボードで入力する">PCのキーボードで入力する</h2>
+<ul>
+<li>AVDを作るときに「Enable Keyboard Input」を有効にします。作成済みのAVDなら、Device ManagerでAVDの編集（鉛筆）→「Show Advanced Settings」→「Keyboard」→「Enable Keyboard Input」を確認して保存し、AVDを再起動します。</li>
+<li>AVDのウィンドウを前面にしてから入力欄をクリックし、PCのキーボードで入力します。AVDのウィンドウにフォーカスがないと入力されません。</li>
+<li>組み合わせキーがエミュレーター側のショートカットとして扱われる場合は、エミュレーターの「…」→「Settings」→「General」→「Send keyboard shortcuts to」を見直します。</li>
+<li>ソフトウェアキーボードを使う場合は、入力欄をタップします。キーボードが出ない場合でも、まずPCキーボードの入力が有効かを確認してください。</li>
+</ul>
+<p>AVDの詳細設定とキーボード入力の説明は、<a href="https://developer.android.com/studio/run/managing-avds" target="_blank" rel="noopener">AVD公式ガイド</a>にあります。</p>
+<h2 id="リーダーアプリのログイン欄でかな入力から英数字へ切り替える">リーダーアプリのログイン欄でかな入力から英数字へ切り替える</h2>
+<p>リーダーアプリのID・パスワード欄にかな文字しか入らない場合は、<strong>AVD画面内のキーボード</strong>と<strong>Windows側の日本語IME</strong>のどちらがかな入力になっているかを確認します。Androidやリーダーアプリの表示言語を日本語のままにして、入力方法だけを切り替えられます。</p>
+<p><strong>AVD画面にかなキーボードが表示されている場合（Gboard）</strong></p>
+<ol>
+<li>リーダーアプリの入力欄をタップし、AVD画面にキーボードを表示します。</li>
+<li>キーボードの<strong>スペースキーを長押し</strong>し、言語の一覧から <strong>English (US)</strong> などの英語キーボードを選びます。地球儀キーが表示されていれば、それでも言語を切り替えられます。</li>
+<li>英語が一覧にない場合は、キーボードの歯車からGboardの設定を開き、<strong>言語 → キーボードを追加 → English (US) → QWERTY</strong> を追加してから手順2を行います。表示名はGboardの版によって多少異なります。</li>
+</ol>
+<p>参考：<a href="https://support.google.com/gboard/answer/7068494?hl=ja" target="_blank" rel="noopener">Gboard公式ヘルプ：別の言語で入力する</a></p>
+<p><strong>PCのキーボードで入力する場合</strong></p>
+<ol>
+<li>AVDの外で、Windowsのタスクバーにある入力言語を確認します。日本語IMEが「<strong>あ</strong>」なら「<strong>A</strong>」（英数字入力）へ切り替えます。英語キーボードをWindowsに追加済みなら、<strong>Windowsキー＋Space</strong> で「ENG」を選ぶこともできます。</li>
+<li>AVDのウィンドウを前面にし、リーダーアプリの入力欄をクリックしてPCのキーボードで入力します。入力されなければ、この章の「Enable Keyboard Input」とAVDへのフォーカスを確認します。</li>
+</ol>
+<p>参考：<a href="https://support.microsoft.com/ja-jp/windows/hardware/input-devices/microsoft-japanese-ime" target="_blank" rel="noopener">Microsoft 日本語IME</a>、<a href="https://support.microsoft.com/en-us/windows/hardware/input-devices/advanced-input-methods-for-east-asian-languages" target="_blank" rel="noopener">Windowsの入力言語切り替え</a></p>
+<blockquote><p>🔑 ID・パスワード・認証コードはAVDへ直接入力してください。ebook2xtcやサポートのチャットへ送らないでください。</p></blockquote>
+<h2 id="キャプチャ中にavdの画面が消えないようにする">キャプチャ中にAVDの画面が消えないようにする</h2>
+<ol>
+<li>AVDの「Settings（設定）」→「About phone（デバイス情報）」または「About emulated device（エミュレートされたデバイス情報）」→「Build number（ビルド番号）」を開き、ビルド番号を7回タップします。画面ロックの確認が出たら、AVDの設定に従います。これで「Developer options」が表示されます。</li>
+<li>「Settings（設定）」→「System（システム）」→「Developer options（開発者向けオプション）」→「Stay awake（充電中は画面をスリープにしない）」をオンにします。</li>
+<li>Windows PC自体がスリープすると、キャプチャは止まります。長時間のキャプチャでは、Windowsの電源設定でもスリープまでの時間を延ばしてください。</li>
+</ol>
+<blockquote><p>🔋 <strong>「Stay awake」は充電中に働きます</strong>: 通常、AVDは充電状態ですが、それでも消灯する場合は、エミュレーター右側の「…」→「Battery」で「Charger connection」を「AC charger」、「Battery status」を「Charging」にします。</p></blockquote>
+<p>作業が終わったら、必要に応じて設定を元へ戻します。参考：<a href="https://developer.android.com/studio/debug/dev-options" target="_blank" rel="noopener">Android公式の開発者向けオプションの説明</a>、<a href="https://developer.android.com/studio/run/emulator-extended-controls" target="_blank" rel="noopener">エミュレーターの拡張コントロール</a></p>
+<nav class="pager"><a class="previous" href="03-japanese-and-reader.html">← 3. Androidを日本語にし、リーダーアプリを準備する</a><a class="contents" href="index.html">目次</a><a class="next" href="05-launch-avd.html">5. ebook2xtcからAVDを起動する →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

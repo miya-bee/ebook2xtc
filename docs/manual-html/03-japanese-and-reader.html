@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3. Androidを日本語にし、リーダーアプリを準備する | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="3-androidを日本語にしリーダーアプリを準備する">3. Androidを日本語にし、リーダーアプリを準備する</h1>
+<p>Android Studioから作ったAVDは、英語で起動することがあります。まずAndroid本体の言語を日本語へ変え、その後で電子書籍リーダーアプリ（以下、リーダーアプリ）を準備します。</p>
+<h2 id="android本体を日本語にする">Android本体を日本語にする</h2>
+<ol>
+<li>AVDで歯車アイコンの「Settings（設定）」を開きます。英語の画面では「System（システム）」→「Languages &amp; input（言語と入力）」→「Languages（言語）」、Android 14以降では「System（システム）」→「Languages（言語）」→「System languages（システムの言語）」と進みます。</li>
+<li>「Add a language（言語を追加）」を押し、「日本語」→「日本（日本）」を選びます。</li>
+<li>言語の一覧で、日本語を一番上へ移動します。追加しただけでは英語が優先されたままなので、順番を確認してください。</li>
+<li>Android 14以降で「Regional preferences（地域の設定）」がある場合は、必要に応じて日本の地域設定を選びます。</li>
+<li>ホーム画面へ戻り、設定項目やシステム画面が日本語になったことを確認します。</li>
+</ol>
+<blockquote><p>💡 「Regional preferences」はAndroidの表示・地域の設定です。Googleアカウントや、リーダーアプリのアカウントの国・地域の設定は変わりません。</p></blockquote>
+<p>メニュー名は、Androidのバージョンやイメージによって少し異なります。Google公式の<a href="https://support.google.com/android/answer/12395118?hl=ja" target="_blank" rel="noopener">Android言語設定</a>も参照できます。</p>
+<h2 id="リーダーアプリを入れて日本語にする">リーダーアプリを入れて日本語にする</h2>
+<ol>
+<li>Android本体が日本語になった状態でPlayストアを開き、Googleアカウントでサインインします。Playストアで、お使いの電子書籍リーダーアプリを探してインストールします。</li>
+<li>リーダーアプリを開き、そのアプリのアカウントでサインインします。Googleアカウントとは別のアカウントの場合があります。ID欄でかな入力から英数字に切り替えられない場合は、<a href="04-keyboard-and-sleep.html">4章のキーボード切り替え手順</a>を参照してください。</li>
+<li>リーダーアプリの画面が英語のままなら、Androidの「Settings（設定）」→「System（システム）」→「Languages（言語）」→「App languages（アプリの言語）」で、そのアプリを選んで「日本語」を確認します。端末によっては、「Settings（設定）」→「Apps（アプリ）」→ 対象のアプリ →「Language（言語）」にあります。このアプリ別の設定は、Android 13以降で、アプリが言語選択に対応している場合に表示されます。</li>
+<li>一覧にアプリがない、または日本語を選べない場合は、Android本体の日本語が最優先になっていることを確かめ、アプリを終了して開き直します。</li>
+</ol>
+<blockquote><p>🔑 <strong>認証情報について</strong>: 二段階認証が必要な場合は、認証コードやパスワードをAVDへ直接入力してください。認証情報をebook2xtcやマニュアル、リポジトリへ入力・保存しないでください。</p></blockquote>
+<blockquote><p>🌐 <strong>表示言語とアカウント地域は別です</strong>: リーダーアプリの表示言語と、アカウントの国・地域は別の設定です。書籍一覧やストアの一部が英語でも、アプリのメニュー言語が日本語になっているかを分けて確認してください。表示言語だけを変える目的で、アカウントの地域を変更しないでください。</p></blockquote>
+<p>参考：<a href="https://support.google.com/android/answer/12395118?hl=ja" target="_blank" rel="noopener">Androidのアプリ別言語設定</a></p>
+<h2 id="ebook2xtcでリーダーアプリを選ぶ">ebook2xtcでリーダーアプリを選ぶ</h2>
+<p>ebook2xtcは、指定されたリーダーアプリを③でAndroid上に開きます。連続取得中に、Androidの画面上でそのアプリ以外（通知や別のアプリなど）が表示されると停止します。エミュレーターのウィンドウが、Windows上で他のウィンドウの裏に隠れていても取得は続きます。そのため、使うアプリを一度選んでおきます。</p>
+<ol>
+<li>ebook2xtcからAVDを起動します（<a href="05-launch-avd.html">5章</a>）。</li>
+<li>「取得」タブの「リーダーアプリ」欄の「AVDから選ぶ」を押します。</li>
+<li>AVDに利用者がインストールしたアプリが、Androidのパッケージ名（例: <code>com.example.reader</code>）で一覧表示されます。使うリーダーアプリを選んで「OK」を押します。</li>
+</ol>
+<p>選んだアプリはiniに保存され、次回起動時にも使われます。パッケージ名が分かっている場合は、欄に直接入力してもかまいません。アプリを選ばずに③を押した場合も、同じ一覧が表示されます。</p>
+<h2 id="書籍を準備する">書籍を準備する</h2>
+<p>リーダーアプリのライブラリから、キャプチャする書籍を開き、文字サイズや行間などを調整します。ログインした後、取得する本を開いたままにしてかまいません。</p>
+<ul>
+<li>アプリの手順③はリーダーアプリを開くだけで、表示中の画面は変えません。先に本を開いて文字を調整しておいても、③の後に調整してもかまいません（<a href="07-capture.html">7章</a>）。</li>
+<li>試験には、利用許諾を確認した書籍や、著作権の保護期間が終了した作品を使ってください。</li>
+</ul>
+<nav class="pager"><a class="previous" href="02-android-studio.html">← 2. Android StudioとAVDを用意する</a><a class="contents" href="index.html">目次</a><a class="next" href="04-keyboard-and-sleep.html">4. キーボード入力と画面消灯の設定 →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

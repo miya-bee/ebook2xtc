@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>15. 対応状況と安全上の注意 | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="15-対応状況と安全上の注意">15. 対応状況と安全上の注意</h1>
+<h2 id="対応している範囲">対応している範囲</h2>
+<ul>
+<li>出力対象は、XTEINK X4（480×800）またはXTEINK X3（528×792）を選べます。</li>
+<li>取得方式はADB直接取得だけで、選択した機種の原寸と2倍に対応します。旧版の「Windows画面取得」は廃止しました。</li>
+<li>出力形式は、XTC（2階調）とXTCH（4階調）、およびそれぞれのページ単位LZ4圧縮版です。XTCとXTCHを同時に書き出すこともでき、圧縮版と組み合わせると最大4ファイルになります。圧縮版も拡張子は<code>.xtc</code>／<code>.xtch</code>、コンテナのヘッダーは56バイト形式です。</li>
+<li>GUIは、選択したAVDから取得範囲を自動で設定し、キャプチャ座標の手入力やドラッグでの選択を求めません。「出力用切り出し」は、RAWを取得した後の処理です。</li>
+<li>1つの作業フォルダーの中で、機種・倍率は混在しません。</li>
+<li>通常の連続取得には、ページ数の上限がありません。</li>
+</ul>
+<h2 id="実機での確認状況">実機での確認状況</h2>
+<blockquote><p>🧪 一部の1ページ／3ページの非圧縮XTC・XTCHがX4で開くことは確認しています。X3のXTC／XTCH、LZ4圧縮版、『草枕』10ページ版、すべてのファームウェア、倍率・画質プリセットの実機確認は完了していません。確認できた端末とファームウェアの範囲で利用してください。</p></blockquote>
+<h2 id="安全上の注意">安全上の注意</h2>
+<ul>
+<li>DRMや画面保護を回避しません。中央がほぼ全黒の画面は保存せずに止まります。「全黒ページも許容」は、本当に黒いページを1枚だけ保存するためのもので、保護を回避する機能ではありません。</li>
+<li>通知やアカウント情報が画面に出ることがあります。取得の前に通知を抑え、RAWのプレビューと「出力内容の確認」を見てください（<a href="06-before-capture.html">6章</a>）。</li>
+<li>認証情報をebook2xtcやマニュアル、リポジトリへ入力・保存しないでください。ebook2xtcの設定ファイルや環境プロファイルにも、ログイン情報は含まれません。</li>
+<li>作成したXTC系ファイルやRAWの扱いは、書籍の利用許諾の範囲で行ってください。</li>
+</ul>
+<h2 id="開発版について">開発版について</h2>
+<p>現在は開発版です。Python開発版では、Python 3.10と依存ライブラリを別に用意してください。Android SDKとAVDは任意の外部環境で、ebook2xtcには同梱していません。</p>
+<p><a href="index.html">目次へ戻る</a></p>
+<nav class="pager"><a class="previous" href="14-faq.html">← 14. よくある質問・困ったとき</a><a class="contents" href="index.html">目次</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

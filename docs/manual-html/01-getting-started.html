@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1. はじめに・画面の見方 | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="1-はじめに画面の見方">1. はじめに・画面の見方</h1>
+<blockquote><p>🧪 このマニュアルは <strong>v0.4.0</strong> を対象にしています。フォルダー版はインストーラーではありません。</p></blockquote>
+<h2 id="ebook2xtcでできること">ebook2xtcでできること</h2>
+<p>ebook2xtcは、Androidエミュレーター（AVD）に表示した電子書籍リーダーアプリの読書画面を1ページずつ取得してRAW PNGとして保存し、XTEINK X4またはX3向けのXTC／XTCH（必要ならページ単位LZ4圧縮版）へ書き出すWindowsアプリです。</p>
+<table><thead><tr><th>出力対象</th><th>出力寸法</th><th>原寸で取得</th><th>2倍で取得</th></tr></thead><tbody>
+<tr><td>XTEINK X4</td><td>480×800</td><td>480×800</td><td>960×1600</td></tr>
+<tr><td>XTEINK X3</td><td>528×792</td><td>528×792</td><td>1056×1584</td></tr>
+</tbody></table>
+<ul>
+<li>画像は、ADBでAndroidの画面バッファを直接受け取って取得します（ADB直接取得）。AVDのウィンドウの位置や大きさ、Windowsの表示倍率には左右されません（<a href="05-launch-avd.html">5章</a>）。</li>
+<li>2倍で取得したRAWは、書き出すときに出力寸法へ高品質に縮小します。</li>
+<li>保護された画面は黒画像などとして返る場合があります。ebook2xtcは保護を回避せず、中央がほぼ全黒の画像は保存せずに止まります（<a href="07-capture.html">7章</a>）。</li>
+</ul>
+<h2 id="画面の構成">画面の構成</h2>
+<p>画面は左右2つに分かれています。境目をドラッグすると左右の幅を変えられます。ウィンドウの配置は、次回の起動に引き継がれます。</p>
+<table><thead><tr><th>部分</th><th>役割</th></tr></thead><tbody>
+<tr><td>左：設定エリア</td><td>「取得」「出力・画質」「その他」の3つのタブ。AVDの起動、キャプチャの手順、出力の設定を行います</td></tr>
+<tr><td>左下：ステータス</td><td>直前の操作の結果や、RAWを保存しなかった理由を表示します（起動直後は「準備完了」）。困ったときは、まずここを読んでください</td></tr>
+<tr><td>右：取得ページ</td><td>保存したページの一覧。<code>000001  page_000001.png</code> のように、ページ番号とファイル名が並びます。重複や交互ループの候補には ⚠ が付きます</td></tr>
+<tr><td>右：プレビュー</td><td>一覧で選んだページの表示。上部でプレビューの種類を選び、プレビューの下の「◀ 前ページ」「次ページ ▶」とページ番号の欄で、表示するページを移動します。これらは保存済みのページを表示するだけで、AVDのページは送りません</td></tr>
+</tbody></table>
+<p>AVDの起動や寸法の確認の結果は、「取得」タブの「事前準備」の枠内にも表示されます。</p>
+<p>左の設定エリアでは、マウスのホイールは設定エリアのスクロールだけに使います。ポインターが選択欄や数値欄、タブの上にあっても、ホイールで設定やタブは変わりません。設定を変えるときは、クリックして選ぶか、数値を入力してください。</p>
+<p>プレビューの種類は次の5つです。</p>
+<table><thead><tr><th>種類</th><th>表示する内容</th></tr></thead><tbody>
+<tr><td>RAW</td><td>保存したPNGそのもの</td></tr>
+<tr><td>XTC 2階調プレビュー</td><td>現在の出力設定でXTCにしたときの見え方</td></tr>
+<tr><td>XTCH 4階調プレビュー</td><td>現在の出力設定でXTCHにしたときの見え方</td></tr>
+<tr><td>余白・切り出しプレビュー</td><td>余白削減や出力用切り出しの範囲の確認。「余白」を変えると自動でこの表示になります</td></tr>
+<tr><td>AVDライブ（密度確認）</td><td>DPI調整の直後に取得した、AVDの現在の画面（<a href="09-density.html">9章</a>）</td></tr>
+</tbody></table>
+<p>タブごとの主な項目は、<a href="index.html">目次ページ</a> の「画面の3つのタブ」にまとめています。</p>
+<h2 id="起動するpython開発版">起動する（Python開発版）</h2>
+<p>Windows 11でプロジェクトのフォルダーを開き、PowerShellから開発環境を作ります。Pythonは3.10を使います。</p>
+<pre><code>py -3.10 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e &quot;.[desktop]&quot;
+.\.venv\Scripts\python.exe -m s4capture.gui</code></pre>
+<p>2回目以降は最後の起動コマンドだけを実行します。AVDを使うには、Android SDKの <code>platform-tools\adb.exe</code> と <code>emulator\emulator.exe</code> が必要です（<a href="02-android-studio.html">2章</a>）。</p>
+<h2 id="起動する試験用フォルダー版">起動する（試験用フォルダー版）</h2>
+<p>配布フォルダー内の <code>start_ebook2xtc.bat</code> をダブルクリックします。バッチファイルは、同じフォルダーの <code>ebook2xtc.exe</code> を起動します。</p>
+<ul>
+<li><code>start_ebook2xtc.bat</code>、<code>ebook2xtc.exe</code>、<code>_internal</code>、<code>manual</code>、環境JSONは同じ配布フォルダーに置いたままにします。</li>
+<li>SmartScreenが警告する場合、バッチからの起動でも警告は解除されません。配布元とファイルを確認し、実行を許可できる場合にだけWindowsの案内に従ってください。管理対象のPCで禁止されている場合は管理者に確認してください。</li>
+<li>設定は同じフォルダーの <code>ebook2xtc.ini</code> に保存されるため、フォルダーに書き込み権限が必要です（<a href="13-migration.html">13章</a>）。</li>
+<li>この版にも、Android SDK、AVD、リーダーアプリ、X4／X3実機は含まれません。</li>
+<li>作り直す方法は、プロジェクト内の <code>packaging/README.md</code> を参照してください。</li>
+</ul>
+<h2 id="起動したときに表示されるもの">起動したときに表示されるもの</h2>
+<ul>
+<li>起動直後は「Android環境を確認しています…」と表示され、AVDの一覧と仮想化の確認を裏で行います。確認には十数秒かかることがあり、その間はアプリを閉じられません。</li>
+<li>AVDの一覧は読み込みますが、<strong>AVDを自動では起動しません</strong>。起動中のAVDがあっても、自動で設定し直すことはありません。</li>
+<li>フォルダー版では、同梱の環境JSONとSDKを確認します。「取得」タブ上部の「Android環境の準備」からAndroid Studioの入手、導入手順、標準AVDの設定へ進めます。準備完了後も「環境準備済み」の短い表示が残り、「導入・再設定を開く」で再確認できます（<a href="13-migration.html">13章</a>）。</li>
+<li>前に使った作業フォルダーにRAW PNGが残っていると、「残っている中間PNGの確認」が開きます。残すか消すかを、作業フォルダーごとに選べます（<a href="11-raw-cleanup.html">11章</a>）。迷ったら「保持して続行」を押してください。</li>
+</ul>
+<h2 id="このマニュアルを開く">このマニュアルを開く</h2>
+<p>「その他」タブの「マニュアルを開く」を押すと、このマニュアルが既定のブラウザーで開きます。インターネット接続は不要です。「マニュアルが見つかりません」と出た場合は、<code>ebook2xtc.exe</code> と同じフォルダーに <code>manual</code> フォルダーがあるか確認してください。</p>
+<h2 id="最初に確かめる項目">最初に確かめる項目</h2>
+<p>「取得」タブの「事前準備：取得方式と解像度を選んでからAVDを起動」で、AVDを起動する前に次の項目を確かめます。</p>
+<ol>
+<li>⓪「出力対象」：XTEINK X4 (480×800) または XTEINK X3 (528×792)</li>
+<li>①「取得方式」：ADB直接取得（選択肢はこの1つだけで、表示のみです）</li>
+<li>②「キャプチャ解像度」：原寸 または 高画質 2倍（初期値は高画質 2倍）</li>
+</ol>
+<p>②に表示される寸法は、⓪で選んだ機種に合わせて変わります。選び終えたら、③からAVDを起動します（<a href="05-launch-avd.html">5章</a>）。</p>
+<p>AVDをまだ作っていない場合は、次章から順に準備します。</p>
+<nav class="pager"><a class="contents" href="index.html">目次</a><a class="next" href="02-android-studio.html">2. Android StudioとAVDを用意する →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

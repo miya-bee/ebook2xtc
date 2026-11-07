@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9. DPI調整で表示を試す | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="9-dpi調整で表示を試す">9. DPI調整で表示を試す</h1>
+<p>リーダーアプリの文字の配置や改ページを確かめやすくするため、AVDの表示密度（DPI）を変えて、右ペインで実際の画面を確かめられます。</p>
+<blockquote><p>🕒 <strong>変更できるのは③の準備中だけです</strong>: 作業フォルダーを作った後、手順③でリーダーアプリを開き、書籍や文字を調整している間だけDPIを変更できます。④で表紙のプレビューを始めた後や、1ページでも保存した後は変更できません。</p></blockquote>
+<h2 id="使い方">使い方</h2>
+<ol>
+<li>作業フォルダーを作り、手順③でリーダーアプリを開いて、書籍を選び、文字サイズなどを調整します（<a href="07-capture.html">7章</a>）。</li>
+<li>「③ リーダーアプリで書籍・文字を調整中」の「DPI（密度）」に値を入れます。範囲は72〜1000 dpiで、矢印ボタンでは4 dpiずつ変わります。初期値は320 dpiです。</li>
+<li>「適用してプレビュー」を押します。アプリが密度を変え、画面の寸法が変わっていないことを確かめてから、右ペインを「AVDライブ（密度確認）」に切り替えて、リーダーアプリの現在の画面を表示します。</li>
+<li>表示を見ながら、値を変えて繰り返します。</li>
+<li>「320 dpiに戻す」を押すと、標準の320 dpiをAVDへ明示的に設定します。</li>
+</ol>
+<p>欄の右には「現在: 280 dpi（AVD本来 160 dpi / ebook2xtc標準 320 dpi）」のように表示されます。AVD本来の物理密度と、アプリの「320 dpiに戻す」ボタンが設定する値は別々に示します。</p>
+<p>密度を変えても、画面の寸法（解像度）は変わりません。取得したRAWと出力の寸法も、これまでどおり選んだ機種と倍率で決まります。</p>
+<h2 id="dpiを変えると何が変わるか">DPIを変えると何が変わるか</h2>
+<ul>
+<li>DPIを下げると、画面の四隅に見える余白が少なくなる場合があります。</li>
+<li>1ページに入る文字数、改ページの位置、四隅の余白に影響する場合があります。</li>
+</ul>
+<p>ページを取得すると、セッション台帳と各ページの取得記録に、その取得時点の物理密度・上書き密度・実効密度を記録します。ADBから読み取れなかった場合は <code>null</code> として記録します。</p>
+<blockquote><p>🔎 <strong>文字サイズを変える機能ではありません</strong>: 同じページを200 dpiと160 dpiで比べた範囲では、文字の画素寸法の中央値はどちらも25×32 pxで、フォントサイズの変化は確認できませんでした。この結果は試したページでの観察で、ほかの本やページで同じ結果になるとは限りません。文字の大きさはリーダーアプリの文字サイズで決め、DPIは余白や文字の配置、改ページを確かめるための調整として使ってください。</p></blockquote>
+<h2 id="うまくいかないとき">うまくいかないとき</h2>
+<table><thead><tr><th>表示</th><th>対処</th></tr></thead><tbody>
+<tr><td>「密度変更後の画面が黒いままでした。」</td><td>描画が追いついていません。少し待ってから、もう一度「適用してプレビュー」を押します</td></tr>
+<tr><td>「DPIはセッション作成後、③でリーダーアプリを開いて書籍・文字を調整している間に変更できます。」</td><td>③を押した後、④を押す前の段階で操作します</td></tr>
+<tr><td>「ADBが見つからないため、密度を変更できません。」</td><td>Android SDKのPlatform-Toolsを確認します（<a href="02-android-studio.html">2章</a>）</td></tr>
+</tbody></table>
+<h2 id="密度の設定はavdに残ります">密度の設定はAVDに残ります</h2>
+<p>DPIの設定は、ebook2xtcを閉じてもAVDに残ります。試した後で「320 dpiに戻す」を押すか、次の作業で希望する値を適用し直してください。AVD環境を書き出すと、変更した密度も記録されます（<a href="13-migration.html">13章</a>）。</p>
+<nav class="pager"><a class="previous" href="08-stability.html">← 8. ページ安定判定の詳細</a><a class="contents" href="index.html">目次</a><a class="next" href="10-export.html">10. プレビューとXTC／XTCH出力 →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>

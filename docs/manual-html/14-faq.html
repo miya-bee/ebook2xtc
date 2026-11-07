@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>14. よくある質問・困ったとき | ebook2xtc 操作マニュアル</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1><a href="index.html">ebook2xtc 操作マニュアル</a></h1>
+    <p>電子書籍リーダーアプリの読書画面をAVDから取得し、XTEINK X4・X3向けのXTC / XTCH形式へ変換するWindowsアプリの使い方ガイド</p>
+    <p class="view"><a href="index.html">目次を開く <small>ebook2xtc v0.4.0</small></a></p>
+  </header>
+  <section>
+<h1 id="14-よくある質問困ったとき">14. よくある質問・困ったとき</h1>
+<p>まず、左下のステータスと、「取得」タブの「事前準備」の枠に表示されたメッセージを読んでください。多くの場合、次に行うことが書かれています。</p>
+<h2 id="起動と配布">起動と配布</h2>
+<table><thead><tr><th>状況・表示</th><th>確認すること</th></tr></thead><tbody>
+<tr><td><code>start_ebook2xtc.bat</code> から起動できない</td><td>バッチと <code>ebook2xtc.exe</code> が同じフォルダーにあるか確認します。<code>_internal</code> フォルダーも必要です（<a href="01-getting-started.html">1章</a>）</td></tr>
+<tr><td>WindowsのSmartScreenが警告する</td><td>バッチは同じフォルダーのEXEを起動するだけで、SmartScreenの警告を解除しません。配布元とファイルを確認し、実行を許可できる場合にだけWindowsの案内に従ってください。管理対象のPCでは管理者に確認します</td></tr>
+</tbody></table>
+<h2 id="avdとandroid">AVDとAndroid</h2>
+<table><thead><tr><th>状況・表示</th><th>確認すること</th></tr></thead><tbody>
+<tr><td>アプリを起動してもAVDが起動しない</td><td>仕様です。⓪〜②を選び、③でAVDを選んで「起動」を押します（<a href="05-launch-avd.html">5章</a>）</td></tr>
+<tr><td>「Android Emulatorが見つかりません。」／AVDが一覧に出ない</td><td>SDK ManagerでAndroid EmulatorとPlatform-Toolsを入れたか、SDKの場所に <code>emulator\emulator.exe</code> と <code>platform-tools\adb.exe</code> があるかを確認します。環境変数を変えた場合は、アプリを起動し直します（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>Device Managerなどで「Google generic no longer exists as a device」と表示される</td><td>過去版のebook2xtcが付けた端末名が原因の場合があります。ebook2xtcの③で対象AVDを選び「起動」を押すと、無効な端末名を修復します。AVDが起動中の場合は、設定を反映するため再起動されることがあります。リーダーアプリのログインや書籍データは削除しません</td></tr>
+<tr><td>外部で起動したAVDが「Android AVD」欄に出ない</td><td>「事前準備」の枠の③の下にある「AVD更新」を押します</td></tr>
+<tr><td>「…の起動を確認できませんでした。」</td><td>約3分待っても起動を確認できませんでした。AVDのウィンドウでAndroidが起動しているか確認し、「AVD更新」を押します</td></tr>
+<tr><td>「このPCではAVDの実行に使う仮想化を現在利用できません」</td><td>「準備を再確認」で再起動が後で必要になる確認画面が出ます。<strong>OK</strong> ならAVD作成を続け、キャンセルならセットアップを保留します。AVDを起動する前に「Windowsの機能を開く」から「Windows ハイパーバイザー プラットフォーム」を有効にし、<strong>Windows PC本体を一度再起動</strong>します。警告がなければ再起動は不要です（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>「…のEmulatorが起動直後に終了しました（終了コード …）。」</td><td>Android StudioのDevice Managerから同じAVDを起動して、エラーを確認します。PCのメモリや仮想化の設定が原因のことがあります</td></tr>
+<tr><td>ADBサーバーを起動できない</td><td>アプリは、設定済みのAndroid SDKの <code>adb.exe</code> を優先し、応答しないADBサーバーを再起動します。Windowsが既定のポート5037での待ち受けを拒否した場合は、5038〜5043も順に試し、成功したポートをAVDにも引き継ぎます。すべて失敗する場合は、エラーに表示されたADBのパスとポートの診断を確認し、Android Studioなど別のSDKを使うソフトを終了して「AVD更新」をやり直します</td></tr>
+<tr><td>System Imageを入れたのに「標準環境をセットアップ」が押せない</td><td>「準備を再確認」を押し、表示されたSDKの場所とAndroid Studioの <strong>Android SDK Location</strong> を比較します。必要なのはAndroid 15／Google Play／x86_64のイメージです。Google APIs版、Tablet版、16 KB版は別物です。SDKの場所が違う場合は「SDK保存先を指定（認識しない場合）」を押します（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>Playストアがない</td><td>AVDのシステムイメージがGoogle Play対応か確認します。Google APIsだけのイメージには、Playストアが含まれないことがあります（<a href="02-android-studio.html">2章</a>）</td></tr>
+<tr><td>Androidまたはリーダーアプリが英語</td><td>Androidの「System languages」で日本語を一番上にし、Android 13以降ではリーダーアプリの「App languages」も確認して、リーダーアプリを再起動します。リーダーアプリのアカウント地域は別の設定です（<a href="03-japanese-and-reader.html">3章</a>）</td></tr>
+<tr><td>ログイン欄に入力できない</td><td>AVDの「Enable Keyboard Input」を有効にし、AVDのウィンドウを前面にして入力欄をクリックしてから、PCのキーボードで入力します（<a href="04-keyboard-and-sleep.html">4章</a>）</td></tr>
+<tr><td>リーダーアプリのID欄でかな入力から切り替えられない</td><td>AVD内のGboardならスペースキーを長押しして英語キーボードを選びます。PC側の日本語IMEならタスクバーの「あ」を「A」にするか、Windowsキー＋Spaceで「ENG」を選びます。詳しい手順は<a href="04-keyboard-and-sleep.html">4章</a>を参照してください</td></tr>
+<tr><td>取得中にAVDの画面が消える</td><td>Developer optionsの「Stay awake」、AVDの充電状態、Windows PCのスリープ設定を確認します（<a href="04-keyboard-and-sleep.html">4章</a>）</td></tr>
+<tr><td>取得する画面の解像度が合わない</td><td>起動前に⓪と②を選び、アプリの「起動」からAVDを立ち上げ直します。寸法が違えば、アプリがAVDを再起動して合わせます。AVDのウィンドウの見た目の大きさは関係ありません（<a href="05-launch-avd.html">5章</a>）</td></tr>
+</tbody></table>
+<h2 id="キャプチャ">キャプチャ</h2>
+<table><thead><tr><th>状況・表示</th><th>確認すること</th></tr></thead><tbody>
+<tr><td>「① 新規作業フォルダを作成」が押せない</td><td>③で「起動」を押して、取得画面を設定していません。案内に「次の操作：③で対象AVDを選び「起動」を押して取得画面を設定してください。」と出ます</td></tr>
+<tr><td>「③ リーダーアプリを開く」が押せない</td><td>ページを保存済みの作業フォルダーでは押せません。続きは「保存済みページの続きから連続取得」を使います</td></tr>
+<tr><td>「リーダーアプリを開けません」</td><td>リーダーアプリがインストールされているか、AVDの寸法が選んだ値と一致しているかを確認します</td></tr>
+<tr><td>⑥が押せない</td><td>④で表紙のプレビューを取得していません。④を押し、確認で「Yes」を選びます</td></tr>
+<tr><td>「ページ変化がないためRAWは保存せず、…」</td><td>自動で再確認とページ送りのやり直しを行います。キーを送った後の変化なしが3回に達すると巻末候補として止まります。巻末でなければ、リーダーアプリの画面を確認して「保存済みページの続きから連続取得」で再開します（<a href="08-stability.html">8章</a>）</td></tr>
+<tr><td>「最大待機時間内に画面が安定しなかったため、…」</td><td>ページ描画やアニメーションが、最大待機時間内に落ち着いていません。bを少し長くするか、微細なちらつきだけが原因ならεを少し大きくします（<a href="08-stability.html">8章</a>）</td></tr>
+<tr><td>「取得領域の中央がほぼ全黒です。…」</td><td>画面保護、または表示の異常の可能性があります。本当に黒いページだと確認できたときだけ、「全黒ページも許容（次の1ページだけ）」をオンにして続きから取得します（<a href="08-stability.html">8章</a>）</td></tr>
+<tr><td>「直前ページとの完全重複を検出し、後のページ（…）を削除しました。」</td><td>巻末で同じ画面を2回取得したときの動きです。本の途中で出た場合は、ページ送りが効いていないので、リーダーアプリの画面を確認して続きから取得します（<a href="07-capture.html">7章</a>）</td></tr>
+<tr><td>「重複候補」「交互ループ候補」で止まった</td><td>RAWはすべて保持しています。一覧の ⚠ の付いたページを見比べ、リーダーアプリの表示位置を直してから続きを取得します</td></tr>
+<tr><td>「空き容量不足のためセッションを停止しました。」</td><td>保存先のドライブの空きを作り、「② 保存済み作業フォルダを開く」で再開します（<a href="06-before-capture.html">6章</a>）</td></tr>
+<tr><td><code>Esc</code> キーで止まらない</td><td>ebook2xtcのウィンドウをクリックして選んでから押すか、「停止（Esc）」ボタンを押します。AVDのウィンドウを選んだまま押すと、Androidの「戻る」になります（<a href="07-capture.html">7章</a>）</td></tr>
+<tr><td>「このセッションは旧版のWindows画面取得で作成されたため、続きの取得はできません。」</td><td>Windows画面取得は廃止しました。書き出しはできます。続きは、新しい作業フォルダーで取得し直します（<a href="12-resume.html">12章</a>）</td></tr>
+</tbody></table>
+<h2 id="再開出力">再開・出力</h2>
+<table><thead><tr><th>状況・表示</th><th>確認すること</th></tr></thead><tbody>
+<tr><td>「セッションを再開できません」</td><td>親フォルダーではなく、<code>ebook2xtc_…</code> または旧版の <code>s4capture_…</code> の作業フォルダーを選んだか確認します。RAWを手で動かした場合は、元に戻します（<a href="12-resume.html">12章</a>）</td></tr>
+<tr><td>「中間PNGは削除済みです」</td><td>その作業フォルダーは、出力後にRAWを消去しています。再開・再出力はできません（<a href="11-raw-cleanup.html">11章</a>）</td></tr>
+<tr><td>「選択形式を書き出す」が押せない</td><td>ページを1枚も保存していない、取得中または連続取得中、③〜④の準備中、書き出しの最中、のいずれかです。中間PNGを消去済みの作業フォルダーでも書き出せません</td></tr>
+<tr><td>「対応外のRAW寸法です」</td><td>⓪出力対象が、取得したときの機種と同じか確認します（<a href="10-export.html">10章</a>）</td></tr>
+<tr><td>「出力記録を保存できません」</td><td>書き出しは完了していますが、台帳に記録できませんでした。RAWを消去しないでください。作業フォルダーの書き込み権限と空き容量を確認します</td></tr>
+<tr><td>変換が止まる・失敗する</td><td>元のRAWとセッション台帳を残し、空き容量・保存先・表示されたエラーを確認します。途中まで書かれたファイルを、手作業で完成扱いにしないでください</td></tr>
+<tr><td>文字が読みにくい</td><td>同じRAWから、余白、文字太らせ、しきい値、ディザ、XTC／XTCHを1つずつ変えてプレビューし、候補を比べます。最終的な判断は実機の表示で行います（<a href="10-export.html">10章</a>）</td></tr>
+<tr><td>「環境プロファイルの読み込みは、キャプチャセッションと変換を終了してから行ってください。」</td><td>連続取得を停止して「キャプチャを終了」を押すか、変換が終わるのを待ってから読み込みます。アプリの再起動は不要です（<a href="13-migration.html">13章</a>）</td></tr>
+</tbody></table>
+<nav class="pager"><a class="previous" href="13-migration.html">← 13. AVD環境と設定の持ち運び</a><a class="contents" href="index.html">目次</a><a class="next" href="15-status.html">15. 対応状況と安全上の注意 →</a></nav>
+  </section>
+  <footer>
+    <p>ebook2xtc v0.4.0 の付属マニュアルです。</p>
+    <p><small>レイアウトは GitHub Pages の Minimal テーマ（orderedlist）を参考にしています。</small></p>
+  </footer>
+</div>
+</body>
+</html>
