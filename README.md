@@ -6,7 +6,7 @@ ebook2xtc は、電子書籍リーダーアプリの読書画面を Android エ�
 
 ## 入手方法
 
-ebook2xtc（exe 版）は、日本語XTC GUI Studio をご購入いただいた方向けに限定配布しています。入手方法は、noteでご購入時いただいた有料部分を案内をご覧ください。
+ebook2xtc（exe 版）は、日本語XTC GUI Studio をご購入いただいた方向けに限定配布しています。入手方法は、noteでご購入時いただいた有料部分のご案内をご覧ください。
 
 入手した ZIP を展開したら、`ebook2xtc` フォルダーの `README.txt` をお読みください（同じ内容: [docs/README_FIRST.txt](docs/README_FIRST.txt)）。
 
