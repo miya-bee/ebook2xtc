@@ -2,21 +2,35 @@
 
 AVDは、Android端末をWindows上で動かす仮想端末です。リーダーアプリとGoogle Playを使うため、Google Playストア入りのシステムイメージを選びます。
 
+> 🐘 **AVDはファイルが非常に大きく、動作も重くなります**: Android StudioとSDKで数GB、AVDのOSイメージ（Google Play入りのSystem Image）で数GB、AVD本体のデータ（ユーザーデータやスナップショット）で数GB〜十数GBを使い、合計で十数GB以上になります。AVDの起動中はメモリとCPUを多く使うため、PC全体の動作が重くなります。初回の起動や、PCの性能が低い場合は特に時間がかかります。メモリ16GB以上のPCと、SSDの十分な空き容量をおすすめします。使い終わったら、AVDを閉じてください。
+
 > 💡 画面寸法や密度は、AVDを作るときに手で合わせる必要はありません。ebook2xtcで出力対象と倍率を選び、アプリからAVDを起動すると設定されます（[5章](05-launch-avd.md)）。
 
 ## Android StudioとSDKを入れる
 
 1. [Android Studio公式インストール手順](https://developer.android.com/studio/install)から、Windows版を入手してインストールします。ebook2xtcの「取得」タブ最上部にある「Android環境の準備」→「Android Studioを入手（公式）」からも、同じページを開けます。準備完了後は「導入・再設定を開く」でボタンを再表示できます。初回のSetup Wizardでは「Install Type」に **Standard** を選びます。SDKのライセンスを確認・受諾し、ダウンロード完了まで待ってください。
 2. Android StudioのWelcome画面に **New Project／Open／Clone Repository** が表示されても、どれも選びません。**More Actions → SDK Manager** を開きます。すでにSettings画面を開いている場合は **Languages & Frameworks → Android SDK** へ進みます。
-3. **SDK Toolsタブ** を開き、画面の **Android SDK Build-Tools／Android Emulator／Android SDK Platform-Tools／Android SDK Command-line Tools (latest)** の **計4項目**にチェック、または青い横棒が付いていることを確認します。**Command-line Toolsはebook2xtcでAVDを作成するために必須です。** 未導入なら必ずチェックを入れ、**Apply** を押してライセンスを確認・受諾し、状態が **Installed** になるまで待ってください。チェックだけが付いていても「Not Installed」の間は導入が完了していません。Build-ToolsはAndroid Studioの標準項目で、ebook2xtcは直接使用しません。Build-ToolsやEmulatorに青い横棒と「Update Available」が表示される場合は、導入済みで更新版があるという意味です。初回セットアップのために更新する必要はありません。
+3. **SDK Toolsタブ** を開き、次の **4項目** にチェック、または青い横棒が付いていることを確認します。
+
+   - **Android SDK Build-Tools**（Android Studioの標準項目で、ebook2xtcは直接使用しません）
+   - **Android Emulator**
+   - **Android SDK Platform-Tools**
+   - **Android SDK Command-line Tools (latest)**（**ebook2xtcでAVDを作成するために必須です**）
+
+   未導入の項目があれば必ずチェックを入れ、**Apply** を押してライセンスを確認・受諾し、状態が **Installed** になるまで待ってください。チェックだけが付いていても「Not Installed」の間は導入が完了していません。Build-ToolsやEmulatorに青い横棒と「Update Available」が表示される場合は、導入済みで更新版があるという意味です。初回セットアップのために更新する必要はありません。
 
 ![SDK Toolsタブの4項目。Build-ToolsとEmulatorは青い横棒、Command-line ToolsとPlatform-Toolsはチェック付き](images/android-sdk-tools-installed.png)
 
 *図1：SDK Toolsタブの4項目。Build-ToolsとEmulatorの青い横棒は導入済みで更新版がある状態です。Command-line ToolsとPlatform-Toolsはチェック付きでInstalledです。*
 
-> ✅ **ここで使うAndroidのバージョンは「Android 15.0（VanillaIceCream）／API 35」です。** Android Studioで新しいAndroid 16／17が先に表示されても、次の手順ではAndroid 15の行を選んでください。ほかのバージョンが導入済みでも、アンインストールする必要はありません。
+> ✅ **ここで使うAndroidのバージョンは「Android 15.0（VanillaIceCream）／API 35」です。** Android Studioで新しいAndroid 16／17が先に表示されても、次の手順ではAndroid 15の行を選んでください。ほかのバージョンが導入済みの場合、残しておいてもかまいませんし、使わないならアンインストールしてもかまいません（ほかのAVDで使っているバージョンは残してください）。
 
-4. **SDK Platformsタブ** を開き、一覧の **Android 15.0（VanillaIceCream）／API Level 35** を探します。**初回導入ではAndroid 15をインストールする操作が必要です。** Android 15の行の左側にある展開矢印をクリックし、右下の **Show package details** をオンにします。**Android SDK Platform 35** と **Google Play Intel x86_64 Atom System Image** のチェックボックスをクリックしてオンにしてください。**Apply**（または **OK**）を押し、確認画面でライセンスに同意して、ダウンロードとインストールが終わるまで待ちます。最後に、この2項目の状態が **Installed** になったことを確認します。すでに両方ともInstalledの場合だけ、インストール操作を省けます。**Google APIs** のイメージやAndroid 16／17のイメージでは代用できません。AVDのOSイメージは容量が大きいため、空き容量とネット接続を確認してください。
+4. **SDK Platformsタブ** を開き、一覧の **Android 15.0（VanillaIceCream）／API Level 35** を探します。**初回導入ではAndroid 15をインストールする操作が必要です。** Android 15の行の左側にある展開矢印をクリックし、右下の **Show package details** をオンにして、次の **2項目** のチェックボックスをクリックしてオンにします。
+
+   - **Android SDK Platform 35**
+   - **Google Play Intel x86_64 Atom System Image**
+
+   **Apply**（または **OK**）を押し、確認画面でライセンスに同意して、ダウンロードとインストールが終わるまで待ちます。最後に、この2項目の状態が **Installed** になったことを確認します。すでに両方ともInstalledの場合だけ、インストール操作を省けます。**Google APIs** のイメージやAndroid 16／17のイメージでは代用できません。AVDのOSイメージは容量が大きいため、空き容量とネット接続を確認してください。
 
    > 💡 **Android 17の導入は任意です。** 初回のインストール画面でAndroid 17に最初からチェックが入っている場合、チェックを残して導入しても、外して導入を省いてもかまいません。残すと将来Android 17のAVDで動作を試せます。外すとダウンロード量とディスク使用量を減らせます。ただし、**Installedと表示されている項目のチェックを外すとアンインストール**になります。既存のAndroid 17のAVDを使う場合は、その項目を残してください。ebook2xtc用のAndroid 15の上記2項目は必ず導入します。
 

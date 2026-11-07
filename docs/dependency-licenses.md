@@ -1,15 +1,18 @@
-# Optional GUI dependency
+# 同梱ライブラリのライセンス
 
-The desktop interface uses the optional `PySide6` extra. Qt for Python is offered under LGPLv3/GPLv3 and commercial terms; some Qt modules use GPL-only terms. The current app uses the Qt Widgets API. Before distributing packaged builds, review the licenses of the exact PySide6/Qt modules and bundled components with the intended distribution model.
+ebook2xtc（ポータブル exe 版）には、次のライブラリが含まれています。各ライセンスの条件と全文は、リンク先をご覧ください。
 
-- [Qt for Python licensing](https://doc.qt.io/qtforpython-6/)
-- [Qt licensing](https://doc.qt.io/qt-6/licensing.html)
+## PySide6 / Qt（画面表示）
 
-The optional GUI dependency is PySide6-Essentials, which includes QtWidgets; WebEngine and other add-on wheels are not needed by this interface. See [PySide6 Essentials package details](https://pypi.org/project/PySide6-Essentials/).
+画面の表示に Qt for Python（PySide6-Essentials、Qt Widgets）を使っています。PySide6 と Qt は LGPLv3 で提供されています（ほかに GPLv3・商用ライセンスもあります）。
 
-## LZ4 compression
+- [Qt for Python のライセンス](https://doc.qt.io/qtforpython-6/)
+- [Qt のライセンス](https://doc.qt.io/qt-6/licensing.html)
+- [PySide6-Essentials](https://pypi.org/project/PySide6-Essentials/)
 
-The `lz4` runtime dependency uses the Python bindings distributed by `python-lz4`. The bindings are covered by the BSD 3-Clause License; the embedded LZ4 implementation uses the BSD 2-Clause License. A packaged build must include both applicable license notices. The dependency is used to produce XTCZ block data.
+## LZ4（XTCZ の圧縮）
 
-- [python-lz4 license and project](https://github.com/python-lz4/python-lz4)
-- [LZ4 library license](https://github.com/lz4/lz4/blob/dev/LICENSE)
+XTCZ のブロック圧縮に python-lz4 を使っています。python-lz4 は BSD 3-Clause License、中に含まれる LZ4 本体は BSD 2-Clause License です。
+
+- [python-lz4](https://github.com/python-lz4/python-lz4)
+- [LZ4 のライセンス](https://github.com/lz4/lz4/blob/dev/LICENSE)

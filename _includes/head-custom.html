@@ -97,3 +97,76 @@
   });
 })();
 </script>
+
+<!--
+  左の欄（スマホでは上）に、マニュアルの目次を常に出す。
+  jekyll-theme-minimal は各章のページから目次へ戻る手段がなく、ジャンプしづらいため。
+  章を足したり名前を変えたりしたら、ここの一覧も直す。
+-->
+<style>
+  #manual-toc { margin: 18px 0 8px; font-size: 13px; line-height: 1.5; }
+  #manual-toc a.toc-top { display: inline-block; font-weight: bold; margin-bottom: 6px; }
+  #manual-toc ol { margin: 0; padding-left: 2.2em; }
+  #manual-toc li { margin: 1px 0; }
+  #manual-toc li.current > a { font-weight: bold; color: #222; }
+  #manual-toc details > summary { cursor: pointer; font-weight: bold; }
+</style>
+<script>
+(function () {
+  'use strict';
+  var base = '{{ site.baseurl }}/docs/manual/';
+  var chapters = [
+    ['01-getting-started', 'はじめに・画面の見方'],
+    ['02-android-studio', 'Android StudioとAVDを用意する'],
+    ['03-japanese-and-reader', 'Androidを日本語にし、リーダーアプリを準備する'],
+    ['04-keyboard-and-sleep', 'キーボード入力と画面消灯の設定'],
+    ['05-launch-avd', 'ebook2xtcからAVDを起動する'],
+    ['06-before-capture', 'キャプチャ前の準備'],
+    ['07-capture', '作業フォルダーの作成とキャプチャ'],
+    ['08-stability', 'ページ安定判定の詳細'],
+    ['09-density', 'DPI調整で表示を試す'],
+    ['10-export', 'プレビューとXTC／XTCH出力'],
+    ['11-raw-cleanup', '中間PNGの削除'],
+    ['12-resume', '中断と再開'],
+    ['13-migration', 'AVD環境と設定の持ち運び'],
+    ['14-faq', 'よくある質問・困ったとき'],
+    ['15-status', '対応状況と安全上の注意']
+  ];
+  document.addEventListener('DOMContentLoaded', function () {
+    var header = document.querySelector('header');
+    if (!header) { return; }
+    var path = location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    var nav = document.createElement('nav');
+    nav.id = 'manual-toc';
+    var details = document.createElement('details');
+    // 広い画面では開いた状態、スマホでは畳んで本文を先に見せる。
+    details.open = window.matchMedia('(min-width: 961px)').matches;
+    var summary = document.createElement('summary');
+    summary.textContent = '目次';
+    details.appendChild(summary);
+    var top = document.createElement('a');
+    top.className = 'toc-top';
+    top.href = base;
+    top.textContent = 'マニュアルのトップ';
+    details.appendChild(top);
+    var list = document.createElement('ol');
+    chapters.forEach(function (chapter) {
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      link.href = base + chapter[0] + '.html';
+      link.textContent = chapter[1];
+      if (path.slice(-chapter[0].length) === chapter[0]) { item.className = 'current'; }
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    details.appendChild(list);
+    nav.appendChild(details);
+    var after = header.querySelector('p') || header.querySelector('h1');
+    if (after && after.parentNode === header) {
+      header.insertBefore(nav, after.nextSibling);
+    } else {
+      header.appendChild(nav);
+    }
+  });
+})();
+</script>
