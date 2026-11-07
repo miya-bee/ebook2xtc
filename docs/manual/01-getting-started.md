@@ -42,27 +42,14 @@ AVDの起動や寸法の確認の結果は、「取得」タブの「事前準�
 
 タブごとの主な項目は、[目次ページ](index.md) の「画面の3つのタブ」にまとめています。
 
-## 起動する（Python開発版）
-
-Windows 11でプロジェクトのフォルダーを開き、PowerShellから開発環境を作ります。Pythonは3.10を使います。
-
-```powershell
-py -3.10 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[desktop]"
-.\.venv\Scripts\python.exe -m s4capture.gui
-```
-
-2回目以降は最後の起動コマンドだけを実行します。AVDを使うには、Android SDKの `platform-tools\adb.exe` と `emulator\emulator.exe` が必要です（[2章](02-android-studio.md)）。
-
-## 起動する（試験用フォルダー版）
+## 起動する
 
 配布フォルダー内の `start_ebook2xtc.bat` をダブルクリックします。バッチファイルは、同じフォルダーの `ebook2xtc.exe` を起動します。
 
 - `start_ebook2xtc.bat`、`ebook2xtc.exe`、`_internal`、`manual`、環境JSONは同じ配布フォルダーに置いたままにします。
 - SmartScreenが警告する場合、バッチからの起動でも警告は解除されません。配布元とファイルを確認し、実行を許可できる場合にだけWindowsの案内に従ってください。管理対象のPCで禁止されている場合は管理者に確認してください。
 - 設定は同じフォルダーの `ebook2xtc.ini` に保存されるため、フォルダーに書き込み権限が必要です（[13章](13-migration.md)）。
-- この版にも、Android SDK、AVD、リーダーアプリ、X4／X3実機は含まれません。
-- 作り直す方法は、プロジェクト内の `packaging/README.md` を参照してください。
+- Android SDK、AVD、リーダーアプリ、X4／X3実機は含まれません。AVDを使うには、Android SDKの `platform-tools\adb.exe` と `emulator\emulator.exe` が必要です（[2章](02-android-studio.md)）。
 
 ## 起動したときに表示されるもの
 

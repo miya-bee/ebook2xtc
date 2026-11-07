@@ -1,6 +1,3 @@
 title: ebook2xtc 操作マニュアル
 description: 電子書籍リーダーアプリの読書画面を Android エミュレーター（AVD）から取得し、XTEINK X4 / X3 向けの XTC / XTCH 形式へ変換する Windows アプリ（β版）の使い方ガイド
 theme: jekyll-theme-minimal
-# アプリ同梱用のHTML版マニュアルはサイトに出さない（Markdown版と同じ内容のため）。
-exclude:
-  - docs/manual-html
