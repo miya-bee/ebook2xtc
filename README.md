@@ -2,11 +2,13 @@
 
 ebook2xtc は、電子書籍リーダーアプリの読書画面を Android エミュレーター（AVD）から取得し、XTEINK X4 / X3 向けの XTC / XTCH ファイルに変換する Windows アプリです。
 
-このリポジトリは配布用です。マニュアルと導入説明を置き、アプリ本体は [Releases](https://github.com/miya-bee/ebook2xtc/releases/latest) から配布します。
+このリポジトリには、マニュアルと導入説明を置いています。アプリ本体はここでは配布していません。
 
-## ダウンロード
+## 入手方法
 
-[最新版の Releases](https://github.com/miya-bee/ebook2xtc/releases/latest) から ZIP をダウンロードし、展開したフォルダーの `README_FIRST.txt` をお読みください（同じ内容: [docs/README_FIRST.txt](docs/README_FIRST.txt)）。
+ebook2xtc（exe 版）は、日本語XTC GUI Studio をご購入いただいた方向けに限定配布しています。入手方法は、ご購入時にお届けしている案内をご覧ください。
+
+入手した ZIP を展開したら、`ebook2xtc` フォルダーの `README.txt` をお読みください（同じ内容: [docs/README_FIRST.txt](docs/README_FIRST.txt)）。
 
 ## 必要な環境
 
