@@ -110,6 +110,12 @@
   #manual-toc li { margin: 1px 0; }
   #manual-toc li.current > a { font-weight: bold; color: #222; }
   #manual-toc details > summary { cursor: pointer; font-weight: bold; }
+  /* 広い画面では、テーマが左の欄と左下のフッターを固定表示にする。
+     目次で欄が長くなるとフッターに重なるので、重ならない高さで止め、
+     はみ出した分は欄の中でスクロールさせる。 */
+  @media screen and (min-width: 961px) {
+    header { max-height: calc(100vh - 210px); overflow-y: auto; padding-right: 8px; }
+  }
 </style>
 <script>
 (function () {

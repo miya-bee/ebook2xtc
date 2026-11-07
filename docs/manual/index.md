@@ -26,6 +26,7 @@
 3. [Androidを日本語にし、リーダーアプリを準備する](03-japanese-and-reader.md)
 4. [キーボード入力と画面消灯の設定](04-keyboard-and-sleep.md)
 5. [ebook2xtcからAVDを起動する](05-launch-avd.md)
+{: start="2"}
 
 ### キャプチャする
 
@@ -33,21 +34,25 @@
 7. [作業フォルダーの作成とキャプチャ](07-capture.md)
 8. [ページ安定判定の詳細](08-stability.md)
 9. [DPI調整で表示を試す](09-density.md)
+{: start="6"}
 
 ### 出力する
 
 10. [プレビューとXTC／XTCH出力](10-export.md)
 11. [中間PNGの削除](11-raw-cleanup.md)
+{: start="10"}
 
 ### 続きと持ち運び
 
 12. [中断と再開](12-resume.md)
 13. [AVD環境と設定の持ち運び](13-migration.md)
+{: start="12"}
 
 ### 資料
 
 14. [よくある質問・困ったとき](14-faq.md)
 15. [対応状況と安全上の注意](15-status.md)
+{: start="14"}
 
 ## 基本の流れ
 
