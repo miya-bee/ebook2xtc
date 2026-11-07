@@ -25,6 +25,6 @@ ebook2xtc（exe 版）は、日本語XTC GUI Studio をご購入いただいた�
 
 ## マニュアル
 
-- [操作マニュアル（Markdown）](docs/manual/index.md)
+- [操作マニュアル](docs/manual/index.md)
 - 配布 ZIP の `manual\index.html` にも同じ内容が入っています。
 - 依存ライブラリのライセンス: [docs/dependency-licenses.md](docs/dependency-licenses.md)
