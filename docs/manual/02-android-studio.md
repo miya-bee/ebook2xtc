@@ -8,7 +8,7 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
 ## Android StudioとSDKを入れる
 
-1. [Android Studio公式インストール手順](https://developer.android.com/studio/install)から、Windows版を入手してインストールします。ebook2xtcの「取得」タブ最上部にある「Android環境の準備」→「Android Studioを入手（公式）」からも、同じページを開けます。準備完了後は「導入・再設定を開く」でボタンを再表示できます。初回のSetup Wizardでは「Install Type」に **Standard** を選びます。SDKのライセンスを確認・受諾し、ダウンロード完了まで待ってください。
+1. [Android Studio公式インストール手順](https://developer.android.com/studio/install)から、Windows版を入手してインストールします。ebook2xtcの「取得」タブ最上部にある「Android環境の準備」→「Android Studioを入手（公式）」からも、同じページを開けます。同じ欄の「導入手順を開く」は、このマニュアルの[13章](13-migration.md)を開きます。Android StudioとSDKの入れ方は、この2章で説明しています。準備完了後は「導入・再設定を開く」でボタンを再表示できます。初回のSetup Wizardでは「Install Type」に **Standard** を選びます。SDKのライセンスを確認・受諾し、ダウンロード完了まで待ってください。
 2. Android StudioのWelcome画面に **New Project／Open／Clone Repository** が表示されても、どれも選びません。**More Actions → SDK Manager** を開きます。すでにSettings画面を開いている場合は **Languages & Frameworks → Android SDK** へ進みます。
 3. **SDK Toolsタブ** を開き、次の **4項目** にチェック、または青い横棒が付いていることを確認します。
 
@@ -25,7 +25,7 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
 > ✅ **ここで使うAndroidのバージョンは「Android 15.0（VanillaIceCream）／API 35」です。** Android Studioで新しいAndroid 16／17が先に表示されても、次の手順ではAndroid 15の行を選んでください。ほかのバージョンが導入済みの場合、残しておいてもかまいませんし、使わないならアンインストールしてもかまいません（ほかのAVDで使っているバージョンは残してください）。
 
-4. **SDK Platformsタブ** を開き、一覧の **Android 15.0（VanillaIceCream）／API Level 35** を探します。**初回導入ではAndroid 15をインストールする操作が必要です。** Android 15の行の左側にある展開矢印をクリックし、右下の **Show package details** をオンにして、次の **2項目** のチェックボックスをクリックしてオンにします。
+4. **SDK Platformsタブ** を開き、一覧の **Android 15.0（VanillaIceCream）／API Level 35** を探します。**初回導入ではAndroid 15をインストールする操作が必要です。** Android 15の行の左側にある展開矢印をクリックし、右下の **Show Package Details** をオンにして、次の **2項目** のチェックボックスをクリックしてオンにします。
 
    - **Android SDK Platform 35**
    - **Google Play Intel x86_64 Atom System Image**
@@ -60,11 +60,11 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
 ebook2xtcは、`ANDROID_HOME` または `ANDROID_SDK_ROOT`、標準のSDKフォルダーなどからSDKを探します。AVDが見つからない場合は、手順5で控えたSDKの場所に、`platform-tools\adb.exe` と `emulator\emulator.exe` があることを確認してください。
 
-図1・図2のSDK保存先は一例です。利用者のPCではSDK Managerに表示された実際の場所を使ってください。複数のSDKがある場合、ebook2xtcは同梱JSONが要求する **Android 15／Google Play／x86_64** のSystem Imageを持つSDKを優先します。見つからない場合、エラーに確認したSDKの場所が表示されます。Android Studioの **Android SDK Location** と比べ、異なる場合は取得タブ最上部の「SDK保存先を指定（認識しない場合）」から、Android Studioに表示されたSDKのフォルダーを選んでください。選択先はポータブル版のiniに保存され、次回も使われます。PowerShellでの設定は不要です。
+図1・図2のSDK保存先は一例です。利用者のPCではSDK Managerに表示された実際の場所を使ってください。複数のSDKがある場合、ebook2xtcは同梱JSONが要求する **Android 15／Google Play／x86_64** のSystem Imageを持つSDKを優先します。見つからない場合、エラーに確認したSDKの場所が表示されます。Android Studioの **Android SDK Location** と比べ、異なる場合は取得タブ最上部の「SDK保存先を指定（認識しない場合）」から、Android Studioに表示されたSDKのフォルダーを選んでください。選択先はアプリの設定ファイル `ebook2xtc.ini` に保存され、次回も使われます。PowerShellでの設定は不要です。
 
 ## Google Play対応のAVDを作る
 
-> 🚀 **配布版ではAVDの手作業作成を省略できます**: ebook2xtcの初回起動時に、EXEと同じフォルダーの環境JSONを自動検出します。必要なSystem Imageを入れ、「取得」タブの「標準環境をセットアップ」を押してください（[13章](13-migration.md)）。この後の手作業でのAVD作成手順は不要です。日本語化とリーダーアプリの準備（[3章](03-japanese-and-reader.md)）はセットアップ後も必要です。
+> 🚀 **AVDの手作業作成は省略できます**: ebook2xtcの初回起動時に、`ebook2xtc.exe` と同じフォルダーの環境JSONを自動検出します。必要なSystem Imageを入れ、「取得」タブの「標準環境をセットアップ」を押してください（[13章](13-migration.md)）。この後の手作業でのAVD作成手順は不要です。日本語化とリーダーアプリの準備（[3章](03-japanese-and-reader.md)）はセットアップ後も必要です。
 
 
 1. Android StudioのWelcome画面から「More Actions」→「Virtual Device Manager」を開きます。プロジェクトを開いている場合は、「View」→「Tool Windows」→「Device Manager」から開けます。
