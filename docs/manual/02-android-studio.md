@@ -45,7 +45,7 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
    > 💡 仮想化の確認だけを早めに済ませたい場合は、手順3でAndroid Emulatorを入れた時点で「準備を再確認」を押してもかまいません。そのときはSystem Imageが未導入と表示されますが、手順4の後に押し直せば解消します。
 
-6. 「標準環境をセットアップ」を押します。同じ設定のAVDがすでにある場合は「環境準備済み」と表示され、このボタンは押せません。そのAVDをそのまま使います。詳しくは[13章](13-migration.md)を参照してください。
+6. 「標準環境をセットアップ」を押します。標準環境として使えるAVD（System ImageがAndroid 15・Google Play・x86_64の `ebook2xtc_API35_Play` など）がすでにある場合は「環境準備済み」と表示され、このボタンは押せません。そのAVDをそのまま使います。詳しくは[13章](13-migration.md)を参照してください。
 
 7. **手順5で仮想化の警告が出たPCだけ**、AVDの初回起動前に「Windowsの機能を開く」から **「Windows ハイパーバイザー プラットフォーム」** を有効にします。Android Studioに「Enable Windows Hypervisor Platform」と表示された場合は、**Enable and Restart Now** でも進められます。作業を保存して **Windows PC本体を一度再起動**し、ebook2xtcの「準備を再確認」を押してください。ebook2xtcやAndroid Studioだけの再起動では反映されません。引き続き仮想化を利用できない場合は、PCのBIOS/UEFIでIntel VT-xまたはAMD SVMが有効か確認します（[Android公式の仮想化設定](https://developer.android.com/studio/run/emulator-acceleration)）。
 {: start="5"}
@@ -60,17 +60,19 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
 ebook2xtcは、`ANDROID_HOME` または `ANDROID_SDK_ROOT`、標準のSDKフォルダーなどからSDKを探します。AVDが見つからない場合は、手順5で控えたSDKの場所に、`platform-tools\adb.exe` と `emulator\emulator.exe` があることを確認してください。
 
-図1・図2のSDK保存先は一例です。利用者のPCではSDK Managerに表示された実際の場所を使ってください。複数のSDKがある場合、ebook2xtcは同梱JSONが要求する **Android 15／Google Play／x86_64** のSystem Imageを持つSDKを優先します。見つからない場合、エラーに確認したSDKの場所が表示されます。Android Studioの **Android SDK Location** と比べ、異なる場合は取得タブ最上部の「SDK保存先を指定（認識しない場合）」から、Android Studioに表示されたSDKのフォルダーを選んでください。選択先はアプリの設定ファイル `ebook2xtc.ini` に保存され、次回も使われます。PowerShellでの設定は不要です。
+図1・図2のSDK保存先は一例です。利用者のPCではSDK Managerに表示された実際の場所を使ってください。複数のSDKがある場合、ebook2xtcは同梱JSONが要求する **Android 15／Google Play／x86_64** のSystem Imageを持つSDKを優先します。見つからない場合、エラーに確認したSDKの場所が表示されます。Android Studioの **Android SDK Location** と比べ、異なる場合は取得タブ最上部の「SDK保存先を指定（認識しない場合）」から、Android Studioに表示されたSDKのフォルダーを選んでください。フォルダーの選択画面は、Android Studioを標準の設定で入れたときのSDKの場所（`C:\Users\<ユーザー名>\AppData\Local\Android\Sdk`）を開いた状態で表示されます。以前に指定した場所がある場合は、その場所から開きます。選択先はアプリの設定ファイル `ebook2xtc.ini` に保存され、次回も使われます。PowerShellでの設定は不要です。
 
 ## Google Play対応のAVDを作る
 
 > 🚀 **AVDの手作業作成は省略できます**: ebook2xtcの初回起動時に、`ebook2xtc.exe` と同じフォルダーの環境JSONを自動検出します。必要なSystem Imageを入れ、「取得」タブの「標準環境をセットアップ」を押してください（[13章](13-migration.md)）。この後の手作業でのAVD作成手順は不要です。日本語化とリーダーアプリの準備（[3章](03-japanese-and-reader.md)）はセットアップ後も必要です。
 
+> 📌 **必須なのはAndroid 15・Google Play・x86_64だけです**: 自動セットアップでも手作業でも、GPU（グラフィック）・メモリ・CPUコア数などは、使っているPCに合わせて決めてかまいません。同梱JSONの値は一例です（[13章](13-migration.md)）。画面の解像度とDPIは、③の「起動」でebook2xtcが設定します。
+
 
 1. Android StudioのWelcome画面から「More Actions」→「Virtual Device Manager」を開きます。プロジェクトを開いている場合は、「View」→「Tool Windows」→「Device Manager」から開けます。
 2. 「Create Device」を押し、Phoneカテゴリから電話型のハードウェアプロファイルを選びます。特定のPixel機種を完全に再現する必要はありません。
 3. System Imageの一覧で **Android 15.0／API 35** の行を明示的に選びます。Android 16／17が初期選択されていたらAndroid 15へ切り替えてください。**Google Playのアイコンまたは表示が付いたイメージ**を選び、「Download」→「Next」へ進みます。Google APIsだけのイメージには、Playストアが入らない場合があります。
-4. AVD名を付けます（例：`S4Capture_API35_Play`）。初期画面の解像度とDPIは既定値のままでかまいません。
+4. AVD名を付けます（例：`ebook2xtc_API35_Play`）。初期画面の解像度とDPIは既定値のままでかまいません。
 5. 「Show Advanced Settings」を開き、「Keyboard」→「Enable Keyboard Input（キーボード入力を有効にする）」を有効にします。PCのキーボードでGoogle／リーダーアプリのログイン欄へ入力するときに使います（[4章](04-keyboard-and-sleep.md)）。設定を確認して「Finish」を押します。
 6. 仮想化の警告が出ている場合は、上の手順7を済ませます。警告がなければPC再起動は不要です。Device Managerで、作成したAVDを一度起動します。初回の起動には時間がかかることがあります。Androidの初期画面が出たら、セットアップを完了してください。
 

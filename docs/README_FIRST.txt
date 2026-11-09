@@ -9,7 +9,7 @@ XTEINK X4／X3向けのXTC・XTCHファイル（LZ4圧縮版を含む）を作�
 ZIPを展開し、ebook2xtcフォルダーをそのまま、書き込み可能なローカルディスクへ置いてください。
 OneDriveと関連のない場所（例：C:\ebook2xtc）を推奨します。
 ebook2xtc.exeだけを取り出さず、start_ebook2xtc.bat、_internal、manual、
-ebook2xtc-S4Capture_API35_Play-environment.jsonを同じフォルダーに残してください。
+ebook2xtc_API35_Play-environment.jsonを同じフォルダーに残してください。
 このアプリはインストーラーを使いません。start_ebook2xtc.batをダブルクリックして起動します。
 バッチファイルは、同じフォルダーのebook2xtc.exeを起動します。
 
@@ -68,8 +68,9 @@ AVD作成に必要なJavaは、通常Android Studio付属のものをアプリ�
 
 必要なSystem Imageが未導入と表示された場合は、手順2で導入してから
 「準備を再確認」を押してください。作成中はアプリを終了せずにお待ちください。
-同じ設定のAVDがすでにある場合は再利用します。
-同名でも設定が異なる場合は、既存AVDを残して別名で作るかを確認します。
+ebook2xtc_API35_Play（以前の版のS4Capture_API35_Playを含む）がすでにあれば、
+System Image（Android 15・Google Play・x86_64）が合っている限り、そのまま再利用します。
+System Imageが違う場合だけ、既存AVDを残して別名で作るかを確認します。
 
 完了後、「取得」タブの⓪出力対象・①取得方式・②キャプチャ解像度を確認し、
 ③でAVDの「起動」を押してください。AVDは自動では起動しません。
