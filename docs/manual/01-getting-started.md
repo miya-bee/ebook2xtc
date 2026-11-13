@@ -6,12 +6,14 @@
 
 ## ebook2xtcでできること
 
-ebook2xtcは、Androidエミュレーター（AVD）に表示した電子書籍リーダーアプリの読書画面を1ページずつ取得してRAW PNGとして保存し、XTEINK X4またはX3向けのXTC／XTCH（必要ならページ単位LZ4圧縮版）へ書き出すWindowsアプリです。
+ebook2xtcは、Androidエミュレーター（AVD）に表示した電子書籍リーダーアプリの読書画面を1ページずつ取得してRAW PNGとして保存し、XTEINK X4・X3、Murphy M3、Metalio E-INK 4 Plus向けのXTC／XTCH（必要ならページ単位LZ4圧縮版）へ書き出すWindowsアプリです。
 
 | 出力対象 | 出力寸法 | 原寸で取得 | 2倍で取得 |
 |---|---|---|---|
 | XTEINK X4 | 480×800 | 480×800 | 960×1600 |
 | XTEINK X3 | 528×792 | 528×792 | 1056×1584 |
+| Murphy M3 | 240×416 | 240×416 | 480×832 |
+| Metalio E-INK 4 Plus | 684×1216 | 684×1216 | 1368×2432 |
 
 - 画像は、ADBでAndroidの画面バッファを直接受け取って取得します（ADB直接取得）。AVDのウィンドウの位置や大きさ、Windowsの表示倍率には左右されません（[5章](05-launch-avd.md)）。
 - 2倍で取得したRAWは、書き出すときに出力寸法へ高品質に縮小します。
@@ -53,7 +55,7 @@ AVDの起動や寸法の確認の結果は、「取得」タブの「事前準�
 - `start_ebook2xtc.bat`、`ebook2xtc.exe`、`_internal`、`manual`、環境JSONは同じ配布フォルダーに置いたままにします。
 - SmartScreenが警告する場合、バッチからの起動でも警告は解除されません。配布元とファイルを確認し、実行を許可できる場合にだけWindowsの案内に従ってください。管理対象のPCで禁止されている場合は管理者に確認してください。
 - 設定は同じフォルダーの `ebook2xtc.ini` に保存されるため、フォルダーに書き込み権限が必要です（[13章](13-migration.md)）。
-- Android SDK、AVD、リーダーアプリ、X4／X3実機は含まれません。AVDを使うには、Android SDKの `platform-tools\adb.exe` と `emulator\emulator.exe` が必要です（[2章](02-android-studio.md)）。
+- Android SDK、AVD、リーダーアプリ、出力先の端末は含まれません。AVDを使うには、Android SDKの `platform-tools\adb.exe` と `emulator\emulator.exe` が必要です（[2章](02-android-studio.md)）。
 
 ## 起動したときに表示されるもの
 
@@ -70,7 +72,7 @@ AVDの起動や寸法の確認の結果は、「取得」タブの「事前準�
 
 「取得」タブの「事前準備：取得方式と解像度を選んでからAVDを起動」で、AVDを起動する前に次の項目を確かめます。
 
-1. ⓪「出力対象」：XTEINK X4 (480×800) または XTEINK X3 (528×792)
+1. ⓪「出力対象」：XTEINK X4 (480×800)、XTEINK X3 (528×792)、Murphy M3 (240×416)、Metalio E-INK 4 Plus (684×1216) のどれか
 2. ①「取得方式」：ADB直接取得（選択肢はこの1つだけで、表示のみです）
 3. ②「キャプチャ解像度」：原寸 または 高画質 2倍（初期値は高画質 2倍）
 
