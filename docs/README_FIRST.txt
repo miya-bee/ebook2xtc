@@ -2,7 +2,8 @@ ebook2xtc　はじめにお読みください
 ================================
 
 ebook2xtcは、Androidエミュレーターに表示した読書画面を取得し、
-XTEINK X4／X3向けのXTC・XTCHファイル（LZ4圧縮版を含む）を作るWindowsアプリです。
+XTEINK X4／X3、Murphy M3、Metalio E-INK 4 Plus向けのXTC・XTCHファイル
+（LZ4圧縮版を含む）を作るWindowsアプリです。
 
 【1．配布フォルダーを置く】
 
