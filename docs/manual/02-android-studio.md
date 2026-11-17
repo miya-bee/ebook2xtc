@@ -12,8 +12,12 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 
 ## Android StudioとSDKを入れる
 
+### Android Studioを入れる
+
 1. [Android Studio公式インストール手順](https://developer.android.com/studio/install)から、Windows版を入手してインストールします。ebook2xtcの「取得」タブ最上部にある「Android環境の準備」→「Android Studioを入手（公式）」からも、同じページを開けます。同じ欄の「導入手順を開く」は、このマニュアルの[14章](14-migration.md)を開きます。Android StudioとSDKの入れ方は、この2章で説明しています。準備完了後は「導入・再設定を開く」でボタンを再表示できます。初回のSetup Wizardでは「Install Type」に **Standard** を選びます。SDKのライセンスを確認・受諾し、ダウンロード完了まで待ってください。
 2. Android StudioのWelcome画面に **New Project／Open／Clone Repository** が表示されても、どれも選びません。**More Actions → SDK Manager** を開きます。すでにSettings画面を開いている場合は **Languages & Frameworks → Android SDK** へ進みます。
+### SDK Toolsタブの4項目を入れる
+
 3. **SDK Toolsタブ** を開き、次の **4項目** にチェック、または青い横棒が付いていることを確認します。
 
    - **Android SDK Build-Tools**（Android Studioの標準項目で、ebook2xtcは直接使用しません）
@@ -22,10 +26,13 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
    - **Android SDK Command-line Tools (latest)**（**ebook2xtcでAVDを作成するために必須です**）
 
    未導入の項目があれば必ずチェックを入れ、**Apply** を押してライセンスを確認・受諾し、状態が **Installed** になるまで待ってください。チェックだけが付いていても「Not Installed」の間は導入が完了していません。Build-ToolsやEmulatorに青い横棒と「Update Available」が表示される場合は、導入済みで更新版があるという意味です。初回セットアップのために更新する必要はありません。
+{: start="3"}
 
 ![SDK Toolsタブの4項目。Build-ToolsとEmulatorは青い横棒、Command-line ToolsとPlatform-Toolsはチェック付き](images/android-sdk-tools-installed.png)
 
 *図1：SDK Toolsタブの4項目。Build-ToolsとEmulatorの青い横棒は導入済みで更新版がある状態です。Command-line ToolsとPlatform-Toolsはチェック付きでInstalledです。*
+
+### Android 15のSystem Imageを入れる
 
 > ✅ **ここで使うAndroidのバージョンは「Android 15.0（VanillaIceCream）／API 35」です。** Android Studioで新しいAndroid 16／17が先に表示されても、次の手順ではAndroid 15の行を選んでください。ほかのバージョンが導入済みの場合、残しておいてもかまいませんし、使わないならアンインストールしてもかまいません（ほかのAVDで使っているバージョンは残してください）。
 
@@ -42,6 +49,8 @@ AVDは、Android端末をWindows上で動かす仮想端末です。リーダー
 ![SDK PlatformsタブでAndroid 15のPlatform 35とGoogle Play Intel x86_64 Atom System ImageがInstalledと表示された例](images/android-sdk-platforms-api35-google-play.png)
 
 *図2：インストール後、Android 15／API 35の2項目がInstalledになった画面例です。初回は上の手順でAndroid 15の項目をクリックしてインストールしてください。画面例のSDK保存先はE:\Android\Sdkです。*
+
+### 準備を再確認して、標準環境を作る
 
 5. SDK Manager上部の **Android SDK Location** を控え、**OK** で閉じます。ebook2xtcの「取得」タブに戻り、「準備を再確認」を押します。アプリが、SDK・System Image・仮想化の状態を確かめます。
    - 仮想化に関する警告が出なければ、Windowsの機能を変更する必要はなく、このためのPC再起動も不要です。
