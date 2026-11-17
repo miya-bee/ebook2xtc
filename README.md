@@ -1,6 +1,8 @@
 # ebook2xtc（β版）
 
-ebook2xtc は、電子書籍リーダーアプリの読書画面を Android エミュレーター（AVD）から取得し、XTEINK X4 / X3 向けの XTC / XTCH ファイルに変換する Windows アプリです。
+ebook2xtc は、電子書籍リーダーアプリの読書画面を Android エミュレーター（AVD）から取得し、XTEINK X4 / X3、Murphy M3、Metalio E-INK 4 Plus 向けの XTC / XTCH ファイルに変換する Windows アプリです。
+
+現在の版は **v0.5.0（公開β版）** です。X3 は、出力したファイルを実機で開けたとの報告をテスターから受けています。Murphy M3 と Metalio E-INK 4 Plus は、形式と寸法の検査までは対応していますが、実機と各ファームウェアで読み込めるかは確認していません（[16. 対応状況と安全上の注意](docs/manual/16-status.md)）。
 
 このリポジトリには、マニュアルと導入説明を置いています。アプリ本体はここでは配布していません。
 
