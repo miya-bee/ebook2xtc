@@ -16,9 +16,9 @@
 
 ### 準備（初回だけ）
 
-1. [2章](02-android-studio.md)の「Android StudioとSDKを入れる」の手順1〜5を行います（Android Emulator、Platform-Tools、Command-line Tools、System Imageの導入と、準備の再確認）。仮想化の警告とPC再起動の扱いは、2章で説明しています。
+1. [2章](02-android-studio.md)の「Android StudioとSDKを入れる」の手順1〜5を行います（Android Studioと Command-line Tools を入れ、「必要な部品を入れる」でAndroid Emulator、Platform-Tools、Android SDK Platform、System Imageを入れて、準備を再確認します）。仮想化の警告とPC再起動の扱いは、2章で説明しています。
 2. ebook2xtcを起動し、「取得」タブ上部の「Android環境の準備」を確認します。同梱JSONとSDKを自動で調べ、必要なSystem Imageを画面に表示します。JSONを手で開く必要はありません。
-3. System Imageが未導入と表示された場合は、Android Studioの「SDK Manager」→「SDK Platformsタブ」で右下の「Show Package Details」をオンにし、表示されたAndroidの版・種類・CPUの種類に合うもの（同梱版はAndroid 15/API 35、Google Play、x86_64）を入れます。完了後にアプリの「準備を再確認」を押します。導入済みでも見つからなければ、同じ欄の「SDK保存先を指定（認識しない場合）」でAndroid StudioのAndroid SDK Locationを選びます。「導入手順を開く」から本章を開けます。
+3. System Imageが未導入と表示された場合は、「必要な部品を入れる」を押すか、Android Studioの「SDK Manager」→「SDK Platformsタブ」で右下の「Show Package Details」をオンにし、表示されたAndroidの版・種類・CPUの種類に合うもの（同梱版はAndroid 15/API 35、Google Play、x86_64）を入れます。完了後にアプリの「準備を再確認」を押します。導入済みでも見つからなければ、同じ欄の「SDK保存先を指定（認識しない場合）」でAndroid StudioのAndroid SDK Locationを選びます。「導入手順を開く」から本章を開けます。
 
 ### 読み込む
 
@@ -36,8 +36,8 @@
 
 6. 仮想化の警告が出ているPCだけ、[2章の手順7](02-android-studio.md)に従ってWindowsの機能を有効にし、**Windows PC本体を一度再起動**します。警告がなければ再起動は不要です。その後「取得」タブの③で「起動」を押します（[5章](05-launch-avd.md)）。初回の起動はAndroidの初期設定を含むため、時間がかかります。
    仮想化診断が利用不可と表示しても、環境に合わない判定の可能性があるため、③の起動時に「このまま起動を試す」を選べます。起動できない場合は[2章](02-android-studio.md)の設定を確認してください。
-7. 「その他」タブの「AVD環境の移行」にリーダーアプリの導入状態が表示されます。未導入ならPlayストアからリーダーアプリを入れ、「リーダーアプリ導入を確認」を押して再確認します。Androidとリーダーアプリの日本語化、Google／リーダーアプリのアカウントへのサインインを行います（[3章](03-japanese-and-reader.md)）。
-8. Developer optionsの「Stay awake」など、画面スリープの設定を行います（[4章](04-keyboard-and-sleep.md)）。キーボード入力は、同梱プロファイルで有効になっています。
+7. 「その他」タブの「AVDの準備状況」に、Androidの言語、リーダーアプリ、画面の消灯などの状態が表示されます（[3章](03-japanese-and-reader.md#準備の状況を確かめるavdの準備状況)）。「AVD環境の移行」にもリーダーアプリの導入状態が表示されます。未導入ならPlayストアからリーダーアプリを入れ（「取得」タブの「Playストアで開く」で、リーダーアプリのページを開けます）、「リーダーアプリ導入を確認」を押して再確認します。Androidとリーダーアプリの日本語化、Google／リーダーアプリのアカウントへのサインインを行います（[3章](03-japanese-and-reader.md)）。
+8. 初めて起動したときに、AVDの画面が消えない設定をアプリに任せるかを尋ねられます。任せない場合は、Developer optionsの「Stay awake」などを設定します（[4章](04-keyboard-and-sleep.md)）。キーボード入力は、同梱プロファイルで有効になっています。
 {: start="6"}
 
 > 🔑 同梱のJSONには、ログイン情報や書籍、リーダーアプリそのものは入っていません。アカウントは利用者自身のものでサインインしてください。

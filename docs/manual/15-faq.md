@@ -38,7 +38,7 @@
 | Androidまたはリーダーアプリが英語 | Androidの「System languages」で日本語を一番上にし、Android 13以降ではリーダーアプリの「App languages」も確認して、リーダーアプリを再起動します。リーダーアプリのアカウント地域は別の設定です（[3章](03-japanese-and-reader.md)） |
 | ログイン欄に入力できない | AVDの「Enable Keyboard Input」を有効にし、AVDのウィンドウを前面にして入力欄をクリックしてから、PCのキーボードで入力します（[4章](04-keyboard-and-sleep.md)） |
 | リーダーアプリのID欄でかな入力から切り替えられない | AVD内のGboardならスペースキーを長押しして英語キーボードを選びます。PC側の日本語IMEならタスクバーの「あ」を「A」にするか、Windowsキー＋Spaceで「ENG」を選びます。詳しい手順は[4章](04-keyboard-and-sleep.md)を参照してください |
-| 取得中にAVDの画面が消える | Developer optionsの「Stay awake」、AVDの充電状態、Windows PCのスリープ設定を確認します（[4章](04-keyboard-and-sleep.md)） |
+| 取得中にAVDの画面が消える | 「その他」タブの「AVDの起動時に、画面が消えない設定にする」をオンにして、AVDを起動し直します。ご自分で設定する場合は、Developer optionsの「Stay awake」、AVDの充電状態、Windows PCのスリープ設定を確認します（[4章](04-keyboard-and-sleep.md)） |
 
 ## キャプチャ
 
